@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+    char input[20] = {0};
+    int r=1;
+    system("shutdown -s -t 60");
+    do{
+        printf("请注意,你的电脑在1分钟内关机,如果输入:我是猪,就取消关机\n");
+         scanf("%s",input);
+        if(strcmp(input,"我是猪") == 0)
+        {
+             system("shutdown -a");
+             r=0;
+        }
+    }while(r);
+    return 0;
+}
+
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int a,b,c;
+    float ret1,ret2;
+    printf("Please enter the numbers a,b,c!\n");
+    scanf("%d%d%d",&a,&b,&c);
+    if((b*b-4*a*c)>0)
+    {
+        ret1 = -b/2*a;
+        ret2 = sqrt(b*b-4*a*c)/2*a;
+        printf("Input the two results %6.2f and %6.2f\n",ret1+ret2,ret1-ret2);
+    }
+    else
+    {
+        printf("Input the numbers error\n");
+    }
+    return 0;
+}
+
+
+#include<stdio.h>//汉诺塔问题
+void Hanoi(int n,char a,char b,char c);
+void Move(int n,char a,char b);
+int i=0;
+int main()
+{
+    int n;
+    printf("Input the number of disks:");
+    scanf("%d",&n);
+    printf("Steps of moving %d disks form A to B by means of C:\n",n);
+    Hanoi(n,'A','B','C');//将n个圆盘借助C由A移动到B
+    printf("%d",i);
+    return 0;
+}
+
+void Hanoi(int n,char a,char b,char c)
+{
+    if(n == 1)
+    {
+        Move(n,a,b);//将第n个圆盘由a移动到b
+    }
+    else
+        {
+            Hanoi(n-1,a,c,b);//将第n-1个圆盘借助于b由a移动到c
+            Move(n,a,b);//第n个圆盘由a移动到b
+            Hanoi(n-1,c,b,a);//将第n-1个圆盘借助于a由c移动到b
+        }
+}
+
+void Move(int n,char a,char b)//函数的功能：将第n个圆盘从源柱子a移动到目标柱子上
+{
+    printf("Move %d: from %c to %c\n",n,a,b);
+    i++;
+}
